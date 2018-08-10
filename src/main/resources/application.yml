@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/pokemon
+    username: postgres
+    password: postgres
+  jpa:
+    generate-ddl: true
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
