@@ -3,7 +3,7 @@
   <head>
     <title>Pokemon Team</title>
   </head>
-    <h4>My Pokemon Team</h4>
+    <h4>My Pokemon Team</h4> <a href="/pokesearch">Search</a>
 
     <table>
       <th>Name</th>
@@ -19,7 +19,7 @@
           <td><img SRC="${p.imageUrl}"</td>
           <td>
             <form action="/remove" method="post" class="m6">
-               <input type="hidden" name="id" value="${pokemon.pokemonId}">
+               <input type="hidden" name="id" value="${p.pokemonId}">
                <input class="btn waves-effect waves-light" type="submit" value="Remove pokemon">
              </form>
           </td>

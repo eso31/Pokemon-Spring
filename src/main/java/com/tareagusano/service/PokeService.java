@@ -73,8 +73,11 @@ public class PokeService {
     }
 
     public void add(Long id) throws IOException {
-        if(_pokeRepository.findOne(id)==null && _pokeRepository.findAll().size()<=6) {
-            Pokemon pokemon = getPokemon(id);
+        Pokemon pokemon = _pokeRepository.findOne(id);
+        int teamSize = _pokeRepository.findAll().size();
+
+        if(pokemon==null && teamSize >=6) {
+            pokemon = getPokemon(id);
             _pokeRepository.saveAndFlush(pokemon);
         }
     }
