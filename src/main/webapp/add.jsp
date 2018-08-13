@@ -18,7 +18,11 @@
           <td><img SRC="${pokemon.imageUrl}"</td>
           <td>
             <form action="/add" method="post" class="m6">
-               <input type="hidden" name="id" value="${pokemon.pokemonId}">
+               <input type="hidden" name="pokemonId" value="${pokemon.pokemonId}">
+               <input type="hidden" name="name" value="${pokemon.name}">
+               <input type="hidden" name="type1" value="${pokemon.type1}">
+               <input type="hidden" name="type2" value="${pokemon.type2}">
+               <input type="hidden" name="imageUrl" value="${pokemon.imageUrl}">
                <input class="btn waves-effect waves-light" type="submit" value="Add pokemon">
              </form>
           </td>

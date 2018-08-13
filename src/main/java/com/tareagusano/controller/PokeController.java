@@ -34,8 +34,8 @@ public class PokeController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addPokemon(Long id) throws IOException {
-        _pokeService.add(id);
+    public ModelAndView addPokemon(Pokemon pokemon) throws IOException {
+        _pokeService.add(pokemon);
         return new ModelAndView("redirect:/myteam");
     }
 
