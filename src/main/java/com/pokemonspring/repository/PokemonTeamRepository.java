@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PokemonTeamRepository extends JpaRepository<Pokemon, Integer> {
-    default int currentTeamSize(){
+    default int currentTeamSize() {
         return findAll().size();
     }
 }
