@@ -3,7 +3,10 @@
   <head>
     <title>Pokeapi</title>
   </head>
-    <h4>Search pokemon id</h4>
+    <div>
+        <h4>Search pokemon id</h4>
+        <a href="/myteam">My team</a>
+    </div>
 
     <div class="row">
         <div class="col l4">
