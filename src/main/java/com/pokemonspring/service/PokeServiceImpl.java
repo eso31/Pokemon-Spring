@@ -18,7 +18,7 @@ public class PokeServiceImpl implements PokeService {
     }
 
     public void add(Pokemon pokemon) {
-        int teamSize = pokemonTeamRepository.findAll().size();
+        int teamSize = pokemonTeamRepository.currentTeamSize();
 
         if (teamSize < 6) {
             pokemonTeamRepository.saveAndFlush(pokemon);
