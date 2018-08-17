@@ -25,7 +25,7 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
         return pokemon;
     }
 
-    public Pokemon json2Pokemon(String json){
+    public Pokemon json2Pokemon(String json) {
         JSONObject jsonObject = new JSONObject(json);
         String name = (String) jsonObject.get("name");
         int pokemonId = jsonObject.getInt("id");
@@ -48,12 +48,7 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
             type2 = PokemonType.valueOf(type2.toUpperCase()).toString();
         }
 
-        Pokemon pokemon = new Pokemon();
-        pokemon.setPokemonId(pokemonId);
-        pokemon.setName(name);
-        pokemon.setType1(type1);
-        pokemon.setType2(type2);
-        pokemon.setImageUrl(imageUrl);
+        Pokemon pokemon = new Pokemon(pokemonId, name, type1, type2, imageUrl);
 
         return pokemon;
     }

@@ -17,13 +17,20 @@ public class Pokemon{
     private String type2;
     private String imageUrl;
 
+    public Pokemon(){
+
+    }
+
+    public Pokemon(int pokemonId, String name, String type1, String type2, String imageUrl) {
+        this.pokemonId = pokemonId;
+        this.name = name;
+        this.type1 = type1;
+        this.type2 = type2;
+        this.imageUrl = imageUrl;
+    }
 
     public int getId() {
         return Id;
-    }
-
-    public void setId(int id) {
-        Id = id;
     }
 
     public int getPokemonId() {
