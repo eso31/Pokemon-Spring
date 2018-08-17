@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PokeServiceImpl implements PokeService{
+public class PokeServiceImpl implements PokeService {
 
     private final PokemonTeamRepository pokemonTeamRepository;
 

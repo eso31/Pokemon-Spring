@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Pokemon{
+public class Pokemon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,7 @@ public class Pokemon{
     private String type2;
     private String imageUrl;
 
-    public Pokemon(){
+    public Pokemon() {
 
     }
 

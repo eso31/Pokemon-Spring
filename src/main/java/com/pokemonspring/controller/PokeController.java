@@ -1,14 +1,12 @@
 package com.pokemonspring.controller;
 
 import com.pokemonspring.model.Pokemon;
-import com.pokemonspring.service.PokemonAPIService;
 import com.pokemonspring.service.PokeServiceImpl;
+import com.pokemonspring.service.PokemonAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller

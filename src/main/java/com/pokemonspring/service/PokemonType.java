@@ -22,10 +22,9 @@ public enum PokemonType {
 
     private String name;
 
-    PokemonType(String name){
+    PokemonType(String name) {
         this.name = name;
     }
-
 
     @Override
     public String toString() {

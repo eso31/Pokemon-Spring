@@ -48,9 +48,7 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
             type2 = PokemonType.valueOf(type2.toUpperCase()).toString();
         }
 
-        Pokemon pokemon = new Pokemon(pokemonId, name, type1, type2, imageUrl);
-
-        return pokemon;
+        return new Pokemon(pokemonId, name, type1, type2, imageUrl);
     }
 
     public String getPokemonFromAPI(int id) {
@@ -64,12 +62,16 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
         }
         HttpURLConnection connection = null;
         try {
-            connection = (HttpURLConnection) url.openConnection();
+            if (url != null) {
+                connection = (HttpURLConnection) url.openConnection();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            connection.setRequestMethod("GET");
+            if (connection != null) {
+                connection.setRequestMethod("GET");
+            }
         } catch (ProtocolException e) {
             e.printStackTrace();
         }
