@@ -10,11 +10,29 @@ public class Pokemon{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long pokemonId;
+    private int Id;
+    private int pokemonId;
     private String name;
     private String type1;
     private String type2;
     private String imageUrl;
+
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public int getPokemonId() {
+        return pokemonId;
+    }
+
+    public void setPokemonId(int pokemonId) {
+        this.pokemonId = pokemonId;
+    }
 
     public String getName() {
         return name;
@@ -38,14 +56,6 @@ public class Pokemon{
 
     public void setType2(String type2) {
         this.type2 = type2;
-    }
-
-    public Long getPokemonId() {
-        return pokemonId;
-    }
-
-    public void setPokemonId(Long pokemonId) {
-        this.pokemonId = pokemonId;
     }
 
     public String getImageUrl() {

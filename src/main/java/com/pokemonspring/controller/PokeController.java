@@ -3,6 +3,7 @@ package com.pokemonspring.controller;
 import com.pokemonspring.model.Pokemon;
 import com.pokemonspring.service.PokemonAPIService;
 import com.pokemonspring.service.PokeServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ public class PokeController {
     private PokeServiceImpl pokeServiceImpl;
     private PokemonAPIService apiService;
 
+    @Autowired
     public PokeController(PokeServiceImpl pokeServiceImpl, PokemonAPIService apiService) {
         this.pokeServiceImpl = pokeServiceImpl;
         this.apiService = apiService;
@@ -25,7 +27,7 @@ public class PokeController {
     }
 
     @RequestMapping(value = "/pokesearch", method = RequestMethod.POST)
-    public ModelAndView pokeapi(Long id) {
+    public ModelAndView pokeapi(int id) {
         return new ModelAndView("add", "pokemon", apiService.getPokemon(id));
     }
 
@@ -36,7 +38,7 @@ public class PokeController {
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    public ModelAndView removePokemon(Long id) {
+    public ModelAndView removePokemon(int id) {
         pokeServiceImpl.remove(id);
         return new ModelAndView("redirect:/myteam");
     }

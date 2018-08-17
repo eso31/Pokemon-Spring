@@ -7,7 +7,7 @@ import java.util.List;
 public interface PokeService {
     void add(Pokemon pokemon);
 
-    void remove(Long id);
+    void remove(int id);
 
     List<Pokemon> findAll();
 }

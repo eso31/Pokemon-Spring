@@ -16,7 +16,10 @@ import java.net.URL;
 
 @Service
 public class PokemonAPIServiceImpl implements PokemonAPIService {
-    public Pokemon getPokemon(Long id) {
+
+    private final static String pokeapiURL = "https://pokeapi.co/api/v2/pokemon/";
+
+    public Pokemon getPokemon(int id) {
         String jsonPokemon = getPokemonFromAPI(id);
         Pokemon pokemon = json2Pokemon(jsonPokemon);
         return pokemon;
@@ -25,7 +28,7 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
     public Pokemon json2Pokemon(String json){
         JSONObject jsonObject = new JSONObject(json);
         String name = (String) jsonObject.get("name");
-        Long pokemon_id = (long) (int) jsonObject.get("id");
+        int pokemonId = jsonObject.getInt("id");
         String imageUrl = (String) jsonObject.getJSONObject("sprites").get("front_default");
         JSONArray types = jsonObject.getJSONArray("types");
         String type1;
@@ -46,7 +49,7 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
         }
 
         Pokemon pokemon = new Pokemon();
-        pokemon.setPokemonId(pokemon_id);
+        pokemon.setPokemonId(pokemonId);
         pokemon.setName(name);
         pokemon.setType1(type1);
         pokemon.setType2(type2);
@@ -55,8 +58,8 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
         return pokemon;
     }
 
-    public String getPokemonFromAPI(Long id) {
-        String uri = "https://pokeapi.co/api/v2/pokemon/" + id + "/";
+    public String getPokemonFromAPI(int id) {
+        String uri = pokeapiURL + id;
 
         URL url = null;
         try {
