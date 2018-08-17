@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 
 @Service
@@ -21,8 +19,7 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
 
     public Pokemon getPokemon(int id) {
         String jsonPokemon = getPokemonFromAPI(id);
-        Pokemon pokemon = json2Pokemon(jsonPokemon);
-        return pokemon;
+        return json2Pokemon(jsonPokemon);
     }
 
     public Pokemon json2Pokemon(String json) {
@@ -54,46 +51,26 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
     public String getPokemonFromAPI(int id) {
         String uri = pokeapiURL + id;
 
-        URL url = null;
+        URL url;
+        HttpURLConnection connection;
+        InputStream inputStream;
+        BufferedReader bufferedReader;
+        String readLine = "";
+
         try {
             url = new URL(uri);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        HttpURLConnection connection = null;
-        try {
-            if (url != null) {
-                connection = (HttpURLConnection) url.openConnection();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            if (connection != null) {
-                connection.setRequestMethod("GET");
-            }
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-        connection.setRequestProperty("Accept", "application/json");
-        connection.setRequestProperty("User-Agent", null);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("User-Agent", null);
 
-        InputStream inputStream;
-        try {
             inputStream = connection.getInputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "";
-        }
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
-        String readLine = null;
-        try {
-            readLine = br.readLine();
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            readLine = bufferedReader.readLine();
+            connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        connection.disconnect();
 
         return readLine;
     }
