@@ -3,8 +3,10 @@
   <head>
     <title>Pokemon Team</title>
   </head>
-    <h4>My Pokemon Team</h4> <a href="/pokesearch">Search</a>
-
+    <h4>My Pokemon Team</h4>
+    <span style="color:red">${message}</span>
+    <br />
+    <a href="/pokesearch">Search</a>
     <table>
       <th>Id</th>
       <th>Name</th>

@@ -5,7 +5,7 @@ import com.pokemonspring.model.Pokemon;
 import java.util.List;
 
 public interface PokeService {
-    void add(Pokemon pokemon);
+    boolean add(Pokemon pokemon);
 
     void remove(int id);
 

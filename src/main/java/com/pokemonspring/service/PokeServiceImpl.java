@@ -13,16 +13,16 @@ public class PokeServiceImpl implements PokeService {
     private final PokemonTeamRepository pokemonTeamRepository;
 
     @Autowired
-    public PokeServiceImpl(PokemonTeamRepository pokemonTeamRepository) {
+    PokeServiceImpl(PokemonTeamRepository pokemonTeamRepository) {
         this.pokemonTeamRepository = pokemonTeamRepository;
     }
 
-    public void add(Pokemon pokemon) {
-        int teamSize = pokemonTeamRepository.currentTeamSize();
-
-        if (teamSize < 6) {
+    public boolean add(Pokemon pokemon) {
+        if (pokemonTeamRepository.currentTeamSize() < 6) {
             pokemonTeamRepository.saveAndFlush(pokemon);
+            return true;
         }
+        return false;
     }
 
     public void remove(int id) {
