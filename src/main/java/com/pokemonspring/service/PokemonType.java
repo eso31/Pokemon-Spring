@@ -1,5 +1,6 @@
 package com.pokemonspring.service;
 
+@SuppressWarnings("unused")
 public enum PokemonType {
     NORMAL("NORMAL"),
     FIRE("FIRE"),
@@ -20,10 +21,7 @@ public enum PokemonType {
     STEEL("STEEL"),
     FAIRY("FAIRY");
 
-    private String name;
-
     PokemonType(String name) {
-        this.name = name;
     }
 
     @Override
