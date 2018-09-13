@@ -15,7 +15,7 @@ import java.net.URL;
 @Service
 public class PokemonAPIServiceImpl implements PokemonAPIService {
 
-    private final static String pokeapiURL = "https://pokeapi.co/api/v2/pokemon/";
+    private final static String POKEAPI_URL = "https://pokeapi.co/api/v2/pokemon/";
 
     public Pokemon getPokemon(int id) {
         String jsonPokemon = getPokemonFromAPI(id);
@@ -24,32 +24,31 @@ public class PokemonAPIServiceImpl implements PokemonAPIService {
 
     public Pokemon json2Pokemon(String json) {
         JSONObject jsonObject = new JSONObject(json);
-        String name = (String) jsonObject.get("name");
+        String pokemonName = (String) jsonObject.get("name");
         int pokemonId = jsonObject.getInt("id");
         String imageUrl = (String) jsonObject.getJSONObject("sprites").get("front_default");
         JSONArray types = jsonObject.getJSONArray("types");
-        String type1;
-        String type2 = "";
+        PokemonType type1 = createPokemonType(types.getJSONObject(0));
+        PokemonType type2 = getType2IfRequired(types);
 
-        if (types.length() < 2) {
-            JSONObject obj = types.getJSONObject(0);
-            type1 = (String) obj.getJSONObject("type").get("name");
-            type1 = PokemonType.valueOf(type1.toUpperCase()).toString();
-        } else {
-            JSONObject obj1 = types.getJSONObject(0);
-            type1 = (String) obj1.getJSONObject("type").get("name");
-            type1 = PokemonType.valueOf(type1.toUpperCase()).toString();
+        return new Pokemon(pokemonId, pokemonName, type1, type2, imageUrl);
+    }
 
-            JSONObject obj2 = types.getJSONObject(1);
-            type2 = (String) obj2.getJSONObject("type").get("name");
-            type2 = PokemonType.valueOf(type2.toUpperCase()).toString();
+    private PokemonType getType2IfRequired(JSONArray types) {
+        if (types.length() > 1) {
+            return createPokemonType(types.getJSONObject(1));
         }
 
-        return new Pokemon(pokemonId, name, type1, type2, imageUrl);
+        return null;
+    }
+
+    private PokemonType createPokemonType(JSONObject type){
+        String typeName = (String) type.getJSONObject("type").get("name");
+        return PokemonType.valueOf(typeName.toUpperCase());
     }
 
     public String getPokemonFromAPI(int id) {
-        String uri = pokeapiURL + id;
+        String uri = POKEAPI_URL + id;
 
         URL url;
         HttpURLConnection connection;
